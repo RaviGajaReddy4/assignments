@@ -25,6 +25,30 @@ public class Main {
         System.out.println(primeNumber + " is" + (isPrimeNumber ? "": " not") + " Prime number");
 
         printNumberPattern(5);
+
+        int numberToReverse = 157;
+        System.out.println("reverse of "+numberToReverse+" is: "+reverseNumber(numberToReverse));
+
+        String stringToReverse = "Hello world";
+        System.out.println("reverse of "+stringToReverse+" is: "+reverseString(stringToReverse));
+
+        int[] arrayToReverse = {4,2,8,1,3,0,6};
+        System.out.print("reverse of array is: ");
+        var reversedArray = reverseArray(arrayToReverse);
+        for(var n: reversedArray){
+            System.out.print(n);
+        }
+        System.out.println();
+
+        System.out.print("sorted array is: ");
+        var sortedArray = sortArray(arrayToReverse);
+        for(var n: sortedArray){
+            System.out.print(n);
+        }
+        System.out.println();
+
+        int[] duplicateNumbers = {3,6,7,3,2,3,1,7,2,7};
+        printDuplicateNumbers(duplicateNumbers);
     }
 
     /**
@@ -184,4 +208,82 @@ public class Main {
         }
     }
 
+    /**
+     * @param number to be reversed
+     * @return reverse the given number
+     */
+    public static int reverseNumber(int number) {
+        int result = 0;
+        while(number > 0) {
+            int remainder = number % 10;
+            result = (result*10)+remainder;
+            number /= 10;
+        }
+        return result;
+    }
+    /**
+     * @param value to be reversed
+     * @return reverse the given string
+     */
+    public static String reverseString(String value) {
+        String result = "";
+        char [] values = value.toCharArray();
+        for(var i: values){
+            result = i+result;
+        }
+        return result;
+    }
+
+    /**
+     * @param numbers to be reversed
+     * @return reverse the given string
+     */
+    public static int[] reverseArray(int[] numbers) {
+        int arrayLength = numbers.length;
+        int [] result = new int[arrayLength];
+        for(int i = 0;i<arrayLength;i++){
+            result[i] = numbers[arrayLength-1-i];
+        }
+        return result;
+    }
+
+    /**
+     * @param numbers to be sorted
+     * @return sort the given array
+     */
+    public static int[] sortArray(int[] numbers) {
+        int arrayLength = numbers.length;
+        for(int i = 0;i<arrayLength;i++){
+            for(int j=i+1;j<arrayLength;j++){
+                if(numbers[i]>numbers[j]){
+                    var temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
+                }
+            }
+        }
+        return numbers;
+    }
+    /**
+     * @param numbers prints duplicate numbers
+     */
+    public static void printDuplicateNumbers(int[] numbers) {
+        var sortedNumbers = sortArray(numbers);
+        int arrayLength = sortedNumbers.length;
+        String duplicateNumbers = "";
+        int previousValue=-1;
+        int nextDuplicateCount=0;
+        for (int sortedNumber : sortedNumbers) {
+            if (sortedNumber == previousValue) {
+                nextDuplicateCount++;
+                if (nextDuplicateCount == 1) {
+                    duplicateNumbers = duplicateNumbers + sortedNumber + " ";
+                }
+            } else {
+                previousValue = sortedNumber;
+                nextDuplicateCount = 0;
+            }
+        }
+        System.out.println("Duplicate numbers: "+duplicateNumbers);
+    }
 }
