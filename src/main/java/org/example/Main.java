@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Started application");
@@ -7,8 +9,11 @@ public class Main {
 
         System.out.println("Max number: " + getMaxNumberFromArray(numbers));
         System.out.println("Min number: " + getMinNumberFromArray(numbers));
+        System.out.print("Enter number:");
+        Scanner sc= new Scanner(System.in);
+        int maxNumberForEvenRange = sc.nextInt();
         System.out.println("Even numbers");
-        printEvenNumbers(8);
+        printEvenNumbers(maxNumberForEvenRange);
         System.out.println("Second Max number: " +getSecondLargestElementFromArray(numbers));
         System.out.println("Factorial of 5 is : " +getFactorial(5));
         int armstrongNumber = 153;
@@ -29,7 +34,9 @@ public class Main {
         int numberToReverse = 157;
         System.out.println("reverse of "+numberToReverse+" is: "+reverseNumber(numberToReverse));
 
-        String stringToReverse = "Hello world";
+        System.out.println("Enter string to reverse");
+        String stringToReverse = sc.next();
+        stringToReverse += sc.nextLine();
         System.out.println("reverse of "+stringToReverse+" is: "+reverseString(stringToReverse));
 
         int[] arrayToReverse = {4,2,8,1,3,0,6};
